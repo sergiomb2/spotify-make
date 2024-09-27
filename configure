@@ -158,18 +158,9 @@ echo -n "Determining distro:... "
 dist=$(lsb_release -i || echo "Unknown")
 dist=$( echo ${dist##*:} )
 case "$dist" in
-    Ubuntu)
-        echo -n '(LinuxMint handled as)... '
+    Ubuntu|Debian)
+        echo -n "($dist handled as Ubuntu)..."
         dist='Ubuntu'
-        ;;
-    Debian)
-        if [[ "$( lsb_release -r)" == *7.[0-9] ]]; then
-            echo -n '(Debian 7.0 Wheeze handled as)...'
-            dist='Ubuntu'
-        elif [[ "$( lsb_release -r)" == *'unstable' ]]; then
-            echo -n '(Debian unstable handled as)...'
-            dist='Ubuntu'
-        fi
         ;;
     CentOS|RedHat*)
         echo -n "($dist handled as RHEL)..."
