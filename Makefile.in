@@ -67,18 +67,15 @@ unpack: check_sources
 	ar x $(archive)
 	tar xf data.tar.xz
 	@rm -rf $(DESTDIR)$(app_libdir) $(DESTDIR)/$(app_datadir)
-	@mkdir -p $(DESTDIR)$(app_libdir)/Data || :
 	@mkdir -p $(DESTDIR)$(app_datadir) || :
 	cp -ar ./usr/share/spotify/*  $(DESTDIR)$(app_datadir)
-	mv $(DESTDIR)$(app_datadir)/libcef.so $(DESTDIR)$(app_libdir)
-	cp ./usr/bin/spotify $(DESTDIR)$(app_libdir)
 	tar xf control.tar.xz
 	@rm -f prerm postinst
 
 set_so_perms: unpack
 	@# Set so files perms to 755 (e. g, fedora) or 644 (e. g. debian).
 	chmod $(so_perms) \
-	    $$( find $(DESTDIR)$(app_libdir) -name '*.so*' -writable)
+	    $$( find $(DESTDIR)$(app_datadir) -name '*.so*' -writable)
 
 bundled:  check_sources unpack
 	[ -n "$(DOCS)" ] && cp -a $(DOCS) $(DESTDIR)$(app_datadir) || :
