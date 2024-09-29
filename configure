@@ -251,6 +251,6 @@ if [[ "$binary" = my* ]]; then
 fi
 
 echo "Writing spotify.bash"
-sed  -e "/spotify=/s|=.*|=$libdir/spotify-client/spotify|" \
+sed  -e "/spotify=/s|=.*|=$datadir/spotify-client/spotify|" \
      -e "/version=/s|=.*|=$version|"        \
      <spotify.bash.in >spotify.bash
