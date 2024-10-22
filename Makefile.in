@@ -65,11 +65,11 @@ $(archive):
 unpack: check_sources
 	@# Unpack into libdir (arched files) and datadir(noarch).
 	ar x $(archive)
-	tar xf data.tar.xz
+	tar xf data.tar.*
 	@rm -rf $(DESTDIR)$(app_libdir) $(DESTDIR)/$(app_datadir)
 	@mkdir -p $(DESTDIR)$(app_datadir) || :
 	cp -ar ./usr/share/spotify/*  $(DESTDIR)$(app_datadir)
-	tar xf control.tar.xz
+	tar xf control.tar.*
 	@rm -f prerm postinst
 
 set_so_perms: unpack
