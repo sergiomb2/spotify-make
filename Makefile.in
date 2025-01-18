@@ -140,5 +140,5 @@ uninstall:
 
 clean:
 	rm -rf $(archive) spotify.bash opt usr
-	rm -rf control.tar.xz data.tar.xz *.deb debian-binary github
+	rm -rf control.tar.* data.tar.* *.deb debian-binary github
 	rm -f spotify.desktop Makefile
